@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/halo"
+					   showStatusBar="false" width="550" height="354" focusEnabled="false"
+					   initialize="init()">
+	
+	<fx:Style source="assets/style.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import com.destroytoday.text.SpellCheckUnderliner;
+			
+			import flash.text.TextField;
+			import flash.text.TextFieldAutoSize;
+			import flash.text.TextFieldType;
+			import flash.text.TextFormat;
+			
+			public var textfield:TextField;
+			public var spellCheckUnderliner:SpellCheckUnderliner;
+			
+			protected function init():void {
+				textfield = new TextField();
+				
+				textfield.multiline = true;
+				textfield.wordWrap = true;
+				textfield.autoSize = TextFieldAutoSize.LEFT;
+				textfield.type = TextFieldType.INPUT;
+
+				textfield.defaultTextFormat = new TextFormat("_sans", 18, 0xAAAAAA);
+				
+				textfield.x = 10;
+				textfield.y = 8;
+				textfield.width = 490;
+				
+				textfield.text = "This an exampel paragraph that has a nomber of mispelled words. I feel very wierd typing this paragraf because I'm a stickler when it comes to speling. It's great that Adobe developed Squiggly, an AS3 spellchecker, but its underliner onlly works with Flex componants.\n\nThat is why I wrote dis SpellCheckUnderliner class. It provides pur AS3 developers with an underlliner for the TextField class. The class also provids a few settings to customise the underliner. Enjoyy!";
+
+				spellCheckUnderliner = new SpellCheckUnderliner(textfield);
+				
+				spellCheckUnderliner.loadDictionary("assets/usa.zwl");
+				
+				container.addChild(textfield);
+				
+				container.graphics.lineStyle(0, 0x666666);
+				container.graphics.drawRect(0, 0, 510, 234);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout gap="10" paddingLeft="20" paddingTop="20" paddingRight="20" paddingBottom="20" />
+	</s:layout>
+	
+	<mx:UIComponent id="container" />
+	
+	<s:HGroup gap="20" paddingTop="244">
+		<s:HGroup gap="10">
+			<s:CheckBox id="spellcheckEnabled" label="enabled" selected="true" change="{spellCheckUnderliner.enabled = spellcheckEnabled.selected}" />
+		</s:HGroup>
+		
+		<s:HGroup gap="10" verticalAlign="middle">
+			<s:NumericStepper id="delay" minimum="0" maximum="10" value="5" change="{spellCheckUnderliner.delay = delay.value * 100}" /> 
+			<s:Label text="delay (in 100 millisecond steps)" />
+		</s:HGroup>
+	</s:HGroup>
+	
+	<s:HGroup gap="20">
+		<s:HGroup gap="10" verticalAlign="middle">
+			<s:DropDownList id="underlineStyle" selectedItem="wave" change="{spellCheckUnderliner.underlineStyle = underlineStyle.selectedItem}">
+				<s:dataProvider>
+					<s:ArrayList>
+						<fx:String>solid</fx:String>
+						<fx:String>dotted</fx:String>
+						<fx:String>wave</fx:String>
+					</s:ArrayList>
+				</s:dataProvider>
+			</s:DropDownList>
+			<s:Label text="underline style" />
+		</s:HGroup>
+		
+		<s:HGroup gap="10" verticalAlign="middle">
+			<s:NumericStepper id="underlineOffset" minimum="-5" maximum="5" value="0" change="{spellCheckUnderliner.underlineOffset = underlineOffset.value}" /> 
+			<s:Label text="underline offset" />
+		</s:HGroup>
+		
+		<s:HGroup gap="10" verticalAlign="middle">
+			<mx:ColorPicker id="underlineColor" selectedColor="0xFF0000" enter="{spellCheckUnderliner.underlineColor = underlineColor.selectedColor}" change="{spellCheckUnderliner.underlineColor = underlineColor.selectedColor}" />
+			<s:Label text="underline color" />
+		</s:HGroup>
+	</s:HGroup>
+	
+</s:WindowedApplication>
