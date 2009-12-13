@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <application xmlns="http://ns.adobe.com/air/application/1.5.2">
-	<id>com.destroytomorrow.SpellCheckUnderlinerDemo</id>
-	<filename>SpellCheckUnderlinerDemo</filename>
-	<name>SpellCheckUnderlinerDemo</name>
+	<id>com.destroytomorrow.SpellCheckHighlighterDemo</id>
+	<filename>SpellCheckHighlighterDemo</filename>
+	<name>SpellCheckHighlighterDemo</name>
 	<version>v1</version>
-	<description>SpellCheckUnderlinerDemo is an AIR app that demonstrates the functionality of the SpellCheckUnderliner class.</description>
+	<description>SpellCheckUnderlinerDemo is an AIR app that demonstrates the functionality of the SpellCheckHighlighter class.</description>
 	<copyright>Destroy Today © 2006–2009</copyright>
 	<initialWindow>
 		<content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
-		<title>SpellCheckUnderlinerDemo</title>
-		<transparent></transparent>
+		<title>SpellCheckHighlighterDemo</title>
 		<visible>true</visible>
 		<maximizable>false</maximizable>
 		<resizable>false</resizable>
